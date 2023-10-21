@@ -1,4 +1,4 @@
-package com.example.se2g12
+package se2.g12.server
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
