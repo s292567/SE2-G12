@@ -1,0 +1,58 @@
+/* Rimuove i margini e il colore di sfondo dal thead */
+/* Rimuove i margini e il colore di sfondo dal thead */
+table {
+  width: 90%;
+  background-color: transparent;
+}
+
+tbody tr {
+  background-color: transparent;
+}
+
+tbody td {
+  background-color: white;
+  border-top-width: 1.3rem;
+  border-bottom-color: whitesmoke;
+  border-top-color: whitesmoke;
+  border-bottom-width: 1.3rem;
+  padding: 1.2rem;
+}
+
+.editButton {
+  background-color: transparent;
+  margin: 0;
+  border-radius: 2rem;
+  border: none;
+  color: black;
+}
+
+.editButton:hover {
+  background-color: turquoise;
+  color: aliceblue;
+}
+
+.deleteButton {
+  background-color: red;
+  margin: 0;
+  border-radius: 2rem;
+  border: none;
+  color: black;
+}
+
+.deleteButton:hover {
+  background-color: red;
+  color: black;
+}
+
+.createButton {
+    position: absolute;
+    right: 5%;
+    background-color: greenyellow;
+    color: black;
+    border-radius: 1rem;
+    padding: 1rem;
+    font-size: large;
+    border-color: greenyellow;
+
+  }
+
