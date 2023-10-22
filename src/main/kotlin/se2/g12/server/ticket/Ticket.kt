@@ -5,6 +5,8 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.OneToOne
+import se2.g12.server.counter.Counter
+import se2.g12.server.counter.CounterDTO
 import se2.g12.server.service.Service
 
 @Entity
@@ -15,5 +17,8 @@ class Ticket(
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var TicketId:Long?=null
+    var served:Boolean=false
+    @OneToOne
+    var counterAssigned:Counter?=null
 
 }

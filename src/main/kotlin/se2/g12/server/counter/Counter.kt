@@ -14,7 +14,7 @@ class Counter (
     @GeneratedValue(generator = "uuid2")
     val counterId:UUID?=null
     @OneToMany
-    private var listOfServices= listOf<Service>()
+    var listOfServices= listOf<Service>()
 
 
 
