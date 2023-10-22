@@ -1,1 +1,1 @@
-rootProject.name = "SE2-G12"
+rootProject.name = "office-queue-management"
