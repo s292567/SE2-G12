@@ -1,10 +1,5 @@
 package it.polito.se2.g12.officequeuemanagement.user
 
-import it.polito.se2.g12.officequeuemanagement.ticket.TicketDTO
-import it.polito.se2.g12.officequeuemanagement.user.UserDTO
-import it.polito.se2.g12.officequeuemanagement.user.User
-import java.util.UUID
-
 interface UserService {
     fun createUser(username: String, fullName: String, email: String): UserDTO
     fun getUserById(userId: Long): UserDTO?
