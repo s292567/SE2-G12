@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Container, Row, Col, Table, ListGroup, Button } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import "../style.css";
@@ -40,7 +40,7 @@ function DefaultLayout(props) {
           {/* Sidebar */}
           <Col md={3} style={{ backgroundColor: "white" }}>
             <div style={{ marginTop: "2rem" }}>
-              <h2>Admin Panel</h2>
+              <h2 className="mb-5">Admin Panel</h2>
               <ListGroup defaultActiveKey="#link1">
                 <Link to="/" style={link1Style} onClick={handleLink1Click}>
                   {" "}
@@ -71,13 +71,33 @@ function DefaultLayout(props) {
 }
 
 function MainLayout() {
-  const services = [
-    { id: 1, serviceName: "Servizio A", counters: [1, 3, 5] },
-    { id: 2, serviceName: "Servizio B", counters: [2, 4] },
-    { id: 3, serviceName: "Servizio C", counters: [1, 5] },
-    { id: 4, serviceName: "Servizio D", counters: [3] },
-    { id: 5, serviceName: "Servizio E", counters: [1, 2, 4] },
-  ];
+
+  const [services, setServices] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+
+  /**
+  TO DO:
+  from the API retrieve the counters list and set it to the counters state
+  useEffect(() => {
+    setLoading(true);
+    getContents().then((list) => {
+      setCounters(list);
+      setLoading(false);
+    });
+  }, [counters.length]);
+  */
+  
+  // delete when the API will be ready
+  useEffect(() => {
+    setServices(
+      [
+        { id: 1, serviceName: "Servizio A", counters: [1, 3, 5] },
+        { id: 2, serviceName: "Servizio B", counters: [2, 4] },
+        { id: 3, serviceName: "Servizio C", counters: [1, 5] },
+        { id: 4, serviceName: "Servizio D", counters: [3] },
+        { id: 5, serviceName: "Servizio E", counters: [1, 2, 4] },
+      ]);  
+  }, []);
 
   return (
     <>
@@ -114,14 +134,34 @@ function MainLayout() {
 }
 
 function CountersOverview() {
-  const counters = [
-    { id: 1, counterName: "Counter A", services: [1, 3, 5] },
-    { id: 2, counterName: "Counter B", services: [2, 4] },
-    { id: 3, counterName: "Counter C", services: [1, 5] },
-    { id: 4, counterName: "Counter D", services: [3] },
-    { id: 5, counterName: "Counter E", services: [1, 2, 4] },
-  ];
 
+  const [counters, setCounters] = useState([]);
+  const [ loading, setLoading ] = useState(false);
+
+  /**
+  TO DO:
+  from the API retrieve the counters list and set it to the counters state
+  useEffect(() => {
+    setLoading(true);
+    getContents().then((list) => {
+      setCounters(list);
+      setLoading(false);
+    });
+  }, [counters.length]);
+  */
+  
+  // delete when the API will be ready
+  useEffect(() => {
+    setCounters(
+      [
+        { id: 1, counterName: "Counter A", services: [1, 3, 5] },
+        { id: 2, counterName: "Counter B", services: [2, 4] },
+        { id: 3, counterName: "Counter C", services: [1, 5] },
+        { id: 4, counterName: "Counter D", services: [3] },
+        { id: 5, counterName: "Counter E", services: [1, 2, 4] },
+      ]);  
+  }, []);
+  
   return (
     <>
       <h2 className="mb-2">Counter Overview</h2>
@@ -133,8 +173,7 @@ function CountersOverview() {
           <tr>
             <th>ID</th>
             <th>Counter Name</th>
-            <th>Services</th>
-            
+            <th>Services</th>         
           </tr>
         </thead>
         <tbody>

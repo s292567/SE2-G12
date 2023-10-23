@@ -3,6 +3,8 @@
 table {
   width: 90%;
   background-color: transparent;
+  border-collapse: separate;
+  border-spacing: 0 20px;
 }
 
 tbody tr {
@@ -11,12 +13,24 @@ tbody tr {
 
 tbody td {
   background-color: white;
-  border-top-width: 1.3rem;
-  border-bottom-color: whitesmoke;
-  border-top-color: whitesmoke;
-  border-bottom-width: 1.3rem;
-  padding: 1.2rem;
+  padding: 0.8rem;
+  border: 1px solid black;
+  border-right: none;
+  border-left: none;
 }
+
+table td:first-of-type{
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+  border-left: 1px solid black;
+}
+
+table td:last-of-type{
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  border-right: 1px solid black;
+}
+
 
 .editButton {
   background-color: transparent;
@@ -32,7 +46,7 @@ tbody td {
 }
 
 .deleteButton {
-  background-color: red;
+  background-color: #FF7676;
   margin: 0;
   border-radius: 2rem;
   border: none;
@@ -40,19 +54,19 @@ tbody td {
 }
 
 .deleteButton:hover {
-  background-color: red;
+  background-color: #FF7676;
   color: black;
 }
 
 .createButton {
     position: absolute;
     right: 5%;
-    background-color: greenyellow;
+    background-color: #8FEB98;
     color: black;
     border-radius: 1rem;
-    padding: 1rem;
+    padding: 0.9rem;
     font-size: large;
-    border-color: greenyellow;
+    border-color: #8FEB98;
 
   }
 
