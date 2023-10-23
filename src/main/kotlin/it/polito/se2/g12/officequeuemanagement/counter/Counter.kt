@@ -1,6 +1,7 @@
 package it.polito.se2.g12.officequeuemanagement.counter
 
 import it.polito.se2.g12.officequeuemanagement.service.Service
+import it.polito.se2.g12.officequeuemanagement.service.ServiceDTO
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.Id
@@ -16,7 +17,7 @@ class Counter (
     @GeneratedValue(generator = "uuid2")
     val counterId:UUID?=null
     @ManyToMany
-    private val listOfServices:List<Service> ?=null;
+    val listOfServices:List<Service> ?=null;
 
 
 
