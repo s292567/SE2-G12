@@ -1,0 +1,72 @@
+/* Rimuove i margini e il colore di sfondo dal thead */
+/* Rimuove i margini e il colore di sfondo dal thead */
+table {
+  width: 90%;
+  background-color: transparent;
+  border-collapse: separate;
+  border-spacing: 0 20px;
+}
+
+tbody tr {
+  background-color: transparent;
+}
+
+tbody td {
+  background-color: white;
+  padding: 0.8rem;
+  border: 1px solid black;
+  border-right: none;
+  border-left: none;
+}
+
+table td:first-of-type{
+  border-top-left-radius: 1.25rem;
+  border-bottom-left-radius: 1.25rem;
+  border-left: 1px solid black;
+}
+
+table td:last-of-type{
+  border-top-right-radius: 1.25rem;
+  border-bottom-right-radius: 1.25rem;
+  border-right: 1px solid black;
+}
+
+
+.editButton {
+  background-color: transparent;
+  margin: 0;
+  border-radius: 2rem;
+  border: none;
+  color: black;
+}
+
+.editButton:hover {
+  background-color: turquoise;
+  color: aliceblue;
+}
+
+.deleteButton {
+  background-color: #FF7676;
+  margin: 0;
+  border-radius: 2rem;
+  border: none;
+  color: black;
+}
+
+.deleteButton:hover {
+  background-color: #FF7676;
+  color: black;
+}
+
+.createButton {
+    position: absolute;
+    right: 5%;
+    background-color: #8FEB98;
+    color: black;
+    border-radius: 1rem;
+    padding: 0.9rem;
+    font-size: large;
+    border-color: #8FEB98;
+
+  }
+

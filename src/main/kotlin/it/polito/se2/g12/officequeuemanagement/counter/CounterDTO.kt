@@ -1,6 +1,7 @@
 package it.polito.se2.g12.officequeuemanagement.counter
 
 import it.polito.se2.g12.officequeuemanagement.service.ServiceDTO
+import it.polito.se2.g12.officequeuemanagement.service.toDTO
 import java.util.UUID
 
 data class CounterDTO (
@@ -8,3 +9,6 @@ data class CounterDTO (
     var number: Int,
     var listOfServices: List<ServiceDTO>
 )
+fun Counter.toDTO(): CounterDTO {
+    return CounterDTO(this.counterId!!,this.number!!,this.listOfServices!!.map(){it.toDTO()})
+}
