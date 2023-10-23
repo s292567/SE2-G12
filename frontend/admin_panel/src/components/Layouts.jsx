@@ -1,5 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Container, Row, Col, Table, ListGroup, Button } from "react-bootstrap";
+import {
+  Container,
+  Row,
+  Col,
+  Spinner,
+  ListGroup,
+  Button,
+} from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import "../style.css";
 
@@ -71,9 +78,8 @@ function DefaultLayout(props) {
 }
 
 function MainLayout() {
-
   const [services, setServices] = useState([]);
-  const [ loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   /**
   TO DO:
@@ -86,57 +92,69 @@ function MainLayout() {
     });
   }, [counters.length]);
   */
-  
+
   // delete when the API will be ready
   useEffect(() => {
-    setServices(
-      [
-        { id: 1, serviceName: "Servizio A", counters: [1, 3, 5] },
-        { id: 2, serviceName: "Servizio B", counters: [2, 4] },
-        { id: 3, serviceName: "Servizio C", counters: [1, 5] },
-        { id: 4, serviceName: "Servizio D", counters: [3] },
-        { id: 5, serviceName: "Servizio E", counters: [1, 2, 4] },
-      ]);  
+    setServices([
+      { id: 1, serviceName: "Servizio A", counters: [1, 3, 5] },
+      { id: 2, serviceName: "Servizio B", counters: [2, 4] },
+      { id: 3, serviceName: "Servizio C", counters: [1, 5] },
+      { id: 4, serviceName: "Servizio D", counters: [3] },
+      { id: 5, serviceName: "Servizio E", counters: [1, 2, 4] },
+    ]);
   }, []);
 
   return (
     <>
       <h2 className="mb-2">Service Overview</h2>
-      <div className="mb-5">
-        <Button className="createButton"> Create </Button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Service Name</th>
-            <th>Counters</th>
-          </tr>
-        </thead>
-        <tbody>
-          {services.map((service) => (
-            <tr key={service.id}>
-              <td>{service.id}</td>
-              <td>{service.serviceName}</td>
-              <td>{service.counters.join(", ")}</td>
-              <td>
-                <Button className="editButton">Edit</Button>
-              </td>
-              <td>
-                <Button className="deleteButton">Delete</Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner
+            as="span"
+            animation="border"
+            role="status"
+            className="me-2"
+          />
+          <b>Loading...</b>
+        </div>
+      ) : (
+        <>
+          <div className="mb-5">
+            <Button className="createButton"> Create </Button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Service Name</th>
+                <th>Counters</th>
+              </tr>
+            </thead>
+            <tbody>
+              {services.map((service) => (
+                <tr key={service.id}>
+                  <td>{service.id}</td>
+                  <td>{service.serviceName}</td>
+                  <td>{service.counters.join(", ")}</td>
+                  <td>
+                    <Button className="editButton">Edit</Button>
+                  </td>
+                  <td>
+                    <Button className="deleteButton">Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 }
 
 function CountersOverview() {
-
   const [counters, setCounters] = useState([]);
-  const [ loading, setLoading ] = useState(false);
+  const [loading, setLoading] = useState(false);
 
   /**
   TO DO:
@@ -149,49 +167,62 @@ function CountersOverview() {
     });
   }, [counters.length]);
   */
-  
+
   // delete when the API will be ready
   useEffect(() => {
-    setCounters(
-      [
-        { id: 1, counterName: "Counter A", services: [1, 3, 5] },
-        { id: 2, counterName: "Counter B", services: [2, 4] },
-        { id: 3, counterName: "Counter C", services: [1, 5] },
-        { id: 4, counterName: "Counter D", services: [3] },
-        { id: 5, counterName: "Counter E", services: [1, 2, 4] },
-      ]);  
+    setCounters([
+      { id: 1, counterName: "Counter A", services: [1, 3, 5] },
+      { id: 2, counterName: "Counter B", services: [2, 4] },
+      { id: 3, counterName: "Counter C", services: [1, 5] },
+      { id: 4, counterName: "Counter D", services: [3] },
+      { id: 5, counterName: "Counter E", services: [1, 2, 4] },
+    ]);
   }, []);
-  
+
   return (
     <>
       <h2 className="mb-2">Counter Overview</h2>
-      <div className="mb-5">
-        <Button className="createButton"> Create </Button>
-      </div>
-      <table>
-        <thead>
-          <tr>
-            <th>ID</th>
-            <th>Counter Name</th>
-            <th>Services</th>         
-          </tr>
-        </thead>
-        <tbody>
-          {counters.map((counter) => (
-            <tr key={counter.id}>
-              <td>{counter.id}</td>
-              <td>{counter.counterName}</td>
-              <td>{counter.services.join(", ")}</td>
-              <td>
-                <Button className="editButton">Edit</Button>
-              </td>
-              <td>
-                <Button className="deleteButton">Delete</Button>
-              </td>
-            </tr>
-          ))}
-        </tbody>
-      </table>
+      {loading ? (
+        <div className="d-flex justify-content-center align-items-center">
+          <Spinner
+            as="span"
+            animation="border"
+            role="status"
+            className="me-2"
+          />
+          <b>Loading...</b>
+        </div>
+      ) : (
+        <>
+          <div className="mb-5">
+            <Button className="createButton"> Create </Button>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Counter Name</th>
+                <th>Services</th>
+              </tr>
+            </thead>
+            <tbody>
+              {counters.map((counter) => (
+                <tr key={counter.id}>
+                  <td>{counter.id}</td>
+                  <td>{counter.counterName}</td>
+                  <td>{counter.services.join(", ")}</td>
+                  <td>
+                    <Button className="editButton">Edit</Button>
+                  </td>
+                  <td>
+                    <Button className="deleteButton">Delete</Button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </>
+      )}
     </>
   );
 }
