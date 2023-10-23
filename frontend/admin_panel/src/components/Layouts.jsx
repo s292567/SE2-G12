@@ -7,10 +7,10 @@ import {
   ListGroup,
   Button,
 } from "react-bootstrap";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../style.css";
 
-function DefaultLayout(props) {
+function DefaultLayout() {
   const [isClicked1, setIsClicked1] = useState(true);
   const [isClicked2, setIsClicked2] = useState(false);
 
@@ -78,6 +78,8 @@ function DefaultLayout(props) {
 }
 
 function MainLayout() {
+  const navigate = useNavigate();
+
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -96,13 +98,47 @@ function MainLayout() {
   // delete when the API will be ready
   useEffect(() => {
     setServices([
-      { id: 1, serviceName: "Servizio A", counters: [1, 3, 5] },
-      { id: 2, serviceName: "Servizio B", counters: [2, 4] },
-      { id: 3, serviceName: "Servizio C", counters: [1, 5] },
-      { id: 4, serviceName: "Servizio D", counters: [3] },
-      { id: 5, serviceName: "Servizio E", counters: [1, 2, 4] },
+      {
+        id: 1,
+        serviceName: "Servizio A",
+        counters: [1, 3, 5],
+        description: "Servizio A",
+      },
+      {
+        id: 2,
+        serviceName: "Servizio B",
+        counters: [2, 4],
+        description: "Servizio B",
+      },
+      {
+        id: 3,
+        serviceName: "Servizio C",
+        counters: [1, 5],
+        description: "Servizio C",
+      },
+      {
+        id: 4,
+        serviceName: "Servizio D",
+        counters: [3],
+        description: "Servizio D",
+      },
+      {
+        id: 5,
+        serviceName: "Servizio E",
+        counters: [1, 2, 4],
+        description: "Servizio E",
+      },
     ]);
   }, []);
+
+  const handleDelete = async (id) => {
+    /*
+    setLoading(true);
+    await deleteService(id);
+    setLoading(false);
+    */
+    navigate("/");
+  };
 
   return (
     <>
@@ -120,7 +156,15 @@ function MainLayout() {
       ) : (
         <>
           <div className="mb-5">
-            <Button className="createButton"> Create </Button>
+            <Button
+              className="createButton"
+              onClick={() => {
+                navigate(`/services/newService`);
+              }}
+            >
+              {" "}
+              Create{" "}
+            </Button>
           </div>
           <table>
             <thead>
@@ -137,10 +181,29 @@ function MainLayout() {
                   <td>{service.serviceName}</td>
                   <td>{service.counters.join(", ")}</td>
                   <td>
-                    <Button className="editButton">Edit</Button>
+                    <Button
+                      className="editButton"
+                      onClick={() => {
+                        navigate(`/services/${service.id}/edit`, {
+                          state: {
+                            name: service.serviceName,
+                            description: service.description,
+                          },
+                        });
+                      }}
+                    >
+                      Edit
+                    </Button>
                   </td>
                   <td>
-                    <Button className="deleteButton">Delete</Button>
+                    <Button
+                      className="deleteButton"
+                      onClick={() => {
+                        handleDelete(service.id);
+                      }}
+                    >
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))}
@@ -153,6 +216,8 @@ function MainLayout() {
 }
 
 function CountersOverview() {
+  const navigate = useNavigate();
+
   const [counters, setCounters] = useState([]);
   const [loading, setLoading] = useState(false);
 
@@ -178,6 +243,15 @@ function CountersOverview() {
       { id: 5, counterName: "Counter E", services: [1, 2, 4] },
     ]);
   }, []);
+
+  const handleDelete = async (id) => {
+    /*
+    setLoading(true);
+    await deleteCounter(id);
+    setLoading(false);
+    */
+    navigate("/counters");
+  };
 
   return (
     <>
@@ -215,7 +289,14 @@ function CountersOverview() {
                     <Button className="editButton">Edit</Button>
                   </td>
                   <td>
-                    <Button className="deleteButton">Delete</Button>
+                    <Button
+                      className="deleteButton"
+                      onClick={() => {
+                        handleDelete(counter.id);
+                      }}
+                    >
+                      Delete
+                    </Button>
                   </td>
                 </tr>
               ))}
