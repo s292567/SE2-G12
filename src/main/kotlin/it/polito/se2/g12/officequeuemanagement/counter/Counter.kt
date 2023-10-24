@@ -12,14 +12,15 @@ import java.util.UUID
 @Entity
 class Counter (
     var number: Int?=null,
+    @ManyToMany
+    var listOfServices:List<Service> ?=null,
+    var description:String?=null
 ){
     @Id
     @GeneratedValue(generator = "uuid2")
     val counterId:UUID?=null
-    @ManyToMany
-    val listOfServices:List<Service> ?=null;
-    //val description:String?
-    //val name:String?
+
+
 
 
 }

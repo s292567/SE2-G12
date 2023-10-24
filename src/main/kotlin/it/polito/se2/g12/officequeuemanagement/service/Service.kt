@@ -9,11 +9,12 @@ import java.time.Duration
 @Entity
 class Service (
     var tagName:String,
-    var serviceTime: Duration
+    var serviceTime: Duration,
+    var description:String
 ){
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     var serviceId:Long?=null
     //counterList
-    //var description:String
+
 }
