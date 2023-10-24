@@ -9,6 +9,6 @@ import java.util.*
 interface ServiceRepository : JpaRepository<Service, Long>{
     @Query("select * from service where tagName= :tagName ", nativeQuery = true)
     fun findByServiceName(tagName: String?): List<Service>
-    @Query("select * from counter_list_of_services where listOfServiceId=:serviceId", nativeQuery = true)
-    fun findCounterList(serviceId:Long):List<UUID>
+    //@Query("select * from counter_list_of_services where listOfServiceId=:serviceId", nativeQuery = true)
+    //fun findCounterList(serviceId:Long):List<UUID>
 }

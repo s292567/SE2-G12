@@ -10,7 +10,7 @@ import java.util.*
 
 @Service
 class ServiceServiceImpl(private val serviceRepository: ServiceRepository,private val counterRepository: CounterRepository) :ServiceService{
-    fun <T> Optional<T>.unwrap(): T? = orElse(null)
+    //fun <T> Optional<T>.unwrap(): T? = orElse(null)
     override fun addNewService(tagName: String, serviceTime: Duration, description: String): ServiceDTO {
         if(serviceRepository.findByServiceName(tagName).isEmpty())
         return serviceRepository.save(Service(tagName,serviceTime,description)).toDTO()
@@ -45,8 +45,8 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
     }
 
     override fun getServiceCounterList(tagName: String): List<CounterDTO> {
-        return serviceRepository.findCounterList(serviceRepository.findByServiceName(tagName).first().serviceId!!).map(){counterRepository.findById(it).unwrap()!!.toDTO()}
-
+        var list=counterRepository.findAll().filter{ it.listOfServices!!.contains(serviceRepository.findByServiceName(tagName).first()) }
+        return list.map{it.toDTO()}
     }
 
 
