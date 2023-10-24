@@ -38,10 +38,10 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
     }
 
     override fun removeService(tagName: String): ServiceDTO {
-        var old=serviceRepository.findByServiceName(tagName).first()
-        if( old.serviceId==null){throw Exception ("tagName not present in the db")}
-        serviceRepository.deleteById(old.serviceId!!)
-        return old.toDTO()
+        var old=serviceRepository.findByServiceName(tagName)
+        if( old.isEmpty()){throw Exception ("tagName not present in the db")}
+        serviceRepository.deleteById(old.first().serviceId!!)
+        return old.first().toDTO()
     }
 
     override fun getServiceCounterList(tagName: String): List<CounterDTO> {

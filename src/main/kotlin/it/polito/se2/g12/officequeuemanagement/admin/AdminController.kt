@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.*
 @CrossOrigin
 class AdminController(private val counterService:CounterService,private val serviceService: ServiceService) {
 
-
+//to be tested
     @GetMapping("/API/admin/counter/{number}")
     fun getCounterServiceList(@PathVariable number: Int): List<ServiceDTO> {
         return counterService.getCounterService(number)
@@ -41,7 +41,7 @@ class AdminController(private val counterService:CounterService,private val serv
 
     // Service to do list (globally usable services)
 
-    // TODO: make entry point change duration of service , delete a service
+    // All tested except getCounterList
     @GetMapping("/API/admin/service/info/")
     fun getAllServices():List<ServiceDTO>{
         return serviceService.getAllService()
