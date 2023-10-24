@@ -13,8 +13,8 @@ import org.springframework.web.bind.annotation.RestController
 @CrossOrigin
 class AdminController(private val counterService:CounterService) {
     // Counter to do list
-    // TODO: make entry point get all counter,get single counter service list,change counter service list
-    // TODO: make entry point post add new counter
+    // TODO: make entry point get all counter,get single counter service list:List<ServiceDTO>
+    // TODO: make entry point post add new counter:CounterDTO,change counter service list
     // Service to do list (globally usable services)
     // TODO: make entry point get all service
     // TODO: make entry point post add new service, change duration of service , delete a service

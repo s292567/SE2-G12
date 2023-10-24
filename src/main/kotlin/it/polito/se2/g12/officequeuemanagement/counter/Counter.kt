@@ -18,7 +18,8 @@ class Counter (
     val counterId:UUID?=null
     @ManyToMany
     val listOfServices:List<Service> ?=null;
-
+    //val description:String?
+    //val name:String?
 
 
 }
