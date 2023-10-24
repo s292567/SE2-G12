@@ -10,21 +10,16 @@ import java.util.*
 
 @Service
 class ServiceServiceImpl(private val serviceRepository: ServiceRepository,private val counterRepository: CounterRepository) :ServiceService{
+    fun <T> Optional<T>.unwrap(): T? = orElse(null)
     override fun addNewService(tagName: String, serviceTime: Duration, description: String): ServiceDTO {
         if(serviceRepository.findByServiceName(tagName).isEmpty())
         return serviceRepository.save(Service(tagName,serviceTime,description)).toDTO()
         else
             throw Exception("Tag-name already present")
     }
-    fun <T> Optional<T>.unwrap(): T? = orElse(null)
-    override fun getAllService(tagNameList: List<String>): List<ServiceDTO> {
-        var list= mutableListOf<ServiceDTO>()
-        for (el in tagNameList){
-            if(serviceRepository.findByServiceName(el).isEmpty())
-                throw Exception("One tag-Name is not present in the Service DB")
-            list.add(serviceRepository.findByServiceName(el).first().toDTO())
-        }
-        return list
+
+    override fun getAllService(): List<ServiceDTO> {
+           return serviceRepository.findAll().map(){it.toDTO()}
     }
 
     override fun changeService(
@@ -44,7 +39,7 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
 
     override fun removeService(tagName: String): ServiceDTO {
         var old=serviceRepository.findByServiceName(tagName).first()
-        if( old.serviceId==null){throw Exception ("tagname not present in the db")}
+        if( old.serviceId==null){throw Exception ("tagName not present in the db")}
         serviceRepository.deleteById(old.serviceId!!)
         return old.toDTO()
     }
