@@ -1,5 +1,6 @@
 package it.polito.se2.g12.officequeuemanagement.ticket
 
+import it.polito.se2.g12.officequeuemanagement.counter.CounterRepository
 import it.polito.se2.g12.officequeuemanagement.service.ServiceRepository
 import org.springframework.stereotype.Service
 import java.util.*
