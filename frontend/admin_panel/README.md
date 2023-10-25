@@ -8,6 +8,7 @@ Currently, two official plugins are available:
 - [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
 # first time
+    Open the terminal, cd to the project folder/frontend/admin_panel and run the following commands:
     npm install
 
 # run the project
