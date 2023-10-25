@@ -6,6 +6,6 @@ interface TicketService {
     fun createTicket(serviceName:String):TicketDTO
     fun getTicketInfo(ticketId:UUID):TicketDTO
 
-    fun assignCounter(ticketId: UUID, counterId: UUID):TicketDTO
+    fun assignCounter(ticketId: UUID, number: Int):TicketDTO
     fun setServed(ticketId: UUID):TicketDTO
 }

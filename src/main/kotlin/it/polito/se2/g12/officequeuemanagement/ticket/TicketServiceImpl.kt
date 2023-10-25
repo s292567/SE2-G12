@@ -47,27 +47,32 @@ class TicketServiceImpl(
         )
     }
 
-    override fun assignCounter(ticketId: UUID, counterId: UUID): TicketDTO {
+    override fun assignCounter(ticketId: UUID, number: Int): TicketDTO {
         // Retrieve the ticket by ID from the repository
         val ticket = ticketRepository.findById(ticketId)
                 .orElseThrow { TicketNotFoundException("Ticket not found for ID: $ticketId") }
 
         // Retrieve the counter by ID from the repository
-        val counter = counterRepository.findById(counterId)
-                .orElseThrow { CounterNotFoundException("Counter not found for ID: $counterId") }
+        val counters = counterRepository.findByNumber(number)
+            if (counters.isNotEmpty()){
+                val counter = counters.first()
+                // Assign the counter to the ticket
+                ticket.counterAssigned = counter
 
-        // Assign the counter to the ticket
-        ticket.counterAssigned = counter
+                // Save the updated ticket
+                val updatedTicket = ticketRepository.save(ticket)
 
-        // Save the updated ticket
-        val updatedTicket = ticketRepository.save(ticket)
+                return TicketDTO(
+                    ticketId = updatedTicket.TicketId,
+                    serviceType = updatedTicket.service.tagName,
+                    served = updatedTicket.served,
+                    counterAssigned = updatedTicket.counterAssigned
+                )
 
-        return TicketDTO(
-                ticketId = updatedTicket.TicketId,
-                serviceType = updatedTicket.service.tagName,
-                served = updatedTicket.served,
-                counterAssigned = updatedTicket.counterAssigned
-        )
+            } else{
+                throw CounterNotFoundException("Counter not found for number: $number")
+            }
+
     }
 
     override fun setServed(ticketId: UUID): TicketDTO {
