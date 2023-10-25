@@ -5,13 +5,17 @@ import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import java.time.Duration
+import java.util.*
 
 @Entity
 class Service (
     var tagName:String,
-    var serviceTime: Duration
+    var serviceTime: Duration,
+    var description:String
 ){
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    var serviceId:Long?=null
+    @GeneratedValue(generator = "uuid2")
+    var serviceId: UUID?=null
+    //counterList
+
 }

@@ -14,21 +14,25 @@ class TicketServiceImpl(
 
     override fun createTicket(serviceName: String): TicketDTO {
         // Retrieve the service by name from the serviceRepository
-        val service = serviceRepository.getServiceByTagName(serviceName) //getServiceByTagName => placeholder for a function that returns a service when given its tagName
-                ?: throw ServiceNotFoundException("Service not found for name: $serviceName")
 
-        // Create a new Ticket
-        val ticket = Ticket(service = service)
+        val services = serviceRepository.findByServiceName(serviceName)
+        if (services.isNotEmpty()) {
+            val service = services.first()
+            // Create a new Ticket
+            val ticket = Ticket(service = service)
+            // Save the ticket to the repository
+            val savedTicket = ticketRepository.save(ticket)
+            return TicketDTO(
+                    ticketId = savedTicket.TicketId,
+                    serviceType = serviceName,
+                    served = savedTicket.served,
+                    counterAssigned = savedTicket.counterAssigned
+            )
 
-        // Save the ticket to the repository
-        val savedTicket = ticketRepository.save(ticket)
+        } else {
+            throw ServiceNotFoundException("Service not found for name: $serviceName")
+        }
 
-        return TicketDTO(
-                ticketId = savedTicket.TicketId,
-                serviceType = serviceName,
-                served = savedTicket.served,
-                counterAssigned = savedTicket.counterAssigned
-        )
     }
 
     override fun getTicketInfo(ticketId: Long): TicketDTO {
@@ -86,5 +90,4 @@ class TicketServiceImpl(
         )
     }
 }
-
 
