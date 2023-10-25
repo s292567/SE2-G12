@@ -22,6 +22,8 @@ function ServiceTypeForm(){
         borderColor: "transparent",
         padding: "0.5rem 1rem",
     };
+    
+    //TO DO: add the API call to create/update the service type (with all the considerations about the time needed to do it)
 
     return <>
         <Container>

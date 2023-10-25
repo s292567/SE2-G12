@@ -269,7 +269,15 @@ function CountersOverview() {
       ) : (
         <>
           <div className="mb-5">
-            <Button className="createButton"> Create </Button>
+          <Button
+              className="createButton"
+              onClick={() => {
+                navigate(`/counters/newCounter`);
+              }}
+            >
+              {" "}
+              Create{" "}
+            </Button>
           </div>
           <table>
             <thead>
@@ -286,7 +294,19 @@ function CountersOverview() {
                   <td>{counter.counterName}</td>
                   <td>{counter.services.join(", ")}</td>
                   <td>
-                    <Button className="editButton">Edit</Button>
+                  <Button
+                      className="editButton"
+                      onClick={() => {
+                        navigate(`/counters/${counter.id}/edit`, {
+                          state: {
+                            name: counter.counterName,
+                            description: counter.description,
+                          },
+                        });
+                      }}
+                    >
+                      Edit
+                    </Button>
                   </td>
                   <td>
                     <Button
