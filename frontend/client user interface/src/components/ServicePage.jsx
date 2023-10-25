@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import './ServicePage.css';
 import './ServiceInfo.css';
 import ServiceInfo from './ServiceInfo';
+import ServiceTypeAPI from "../services/ServiceTypeAPI.jsx";
 
 const ServicePage = () => {
   // State to store the selected service
@@ -11,9 +12,12 @@ const ServicePage = () => {
 
   useEffect(() => {
     // Fetch services from an API endpoint when the component mounts
-    fetch('http://localhost:3001/services')
-      .then((response) => response.json())
-      .then((data) => setServices(data));
+      ServiceTypeAPI.getServices()
+          .then((data)=> setServices(data))
+          .catch((error) => {
+            console.error('Error fetching services data:', error);
+          setServices([]);
+          });
   }, []);
 
   const handleServiceChange = (event) => {
@@ -31,7 +35,7 @@ const ServicePage = () => {
       <select value={selectedService} onChange={handleServiceChange}>
         <option value="">Select a service</option>
         {services.map((service) => (
-          <option key={service.id} value={service.id}>
+          <option key={service.id} value={service.name}>
             {service.name}
           </option>
         ))}
