@@ -1,41 +1,34 @@
 import React, { useState, useEffect } from 'react';
+import TicketAPI from "../services/TicketAPI.js";
 
 const ServiceInfo = ({ selectedService }) => {
-  const [counter, setCounter] = useState(null);
+  const [ticketNum, setTicketNum] = useState(null);
 
   useEffect(() => {
     if (selectedService) {
-      fetch(`http://localhost:3001/counters/${selectedService}`)
-        .then((response) => response.json())
-        .then((data) => {
-          if (selectedService in data) {
-            // Access the counter value from the data object
-            setCounter(data[selectedService].counter);
-          } else {
-            // Handle the case where the selected service doesn't have a counter
-            setCounter(null);
-          }
-        })
-        .catch((error) => {
-          console.error('Error fetching counter data:', error);
-          setCounter(null);
-        });
+      TicketAPI.createTicket(selectedService)
+          .then((response) => {
+            setTicketNum(response)})
+          .catch((error) => {
+              console.error('Error fetching counter data:', error);
+              setTicketNum(null);
+          });
     } else {
       // Handle the case where no service is selected
-      setCounter(null);
+      setTicketNum(null);
     }
   }, [selectedService]);
 
   return (
     <div className="service-info">
       {selectedService ? (
-        counter !== null ? (
+        ticketNum !== null ? (
           <p>
-            You have selected the service: {selectedService} (Counter {counter})
+            You have selected the service: {selectedService} (Ticket Number: {ticketNum})
           </p>
         ) : (
           <p>
-            You have selected the service: {selectedService} (Counter information not available)
+            You have selected the service: {selectedService} (Ticket Number not available)
           </p>
         )
       ) : (
