@@ -47,16 +47,21 @@ class CounterServiceImpl(private val counterRepository: CounterRepository,privat
         return counterRepository.findAll().map(){it.toDTO()}
     }
 
-    override fun deleteCounter(number: Int): CounterDTO {
+    override fun deleteCounter(number: Int){
 
-        var old =counterRepository.findByNumber(number)
-        if (old.isEmpty())
-            throw java.lang.Exception("the counter is ot present in the db")
-        else {
-            var old=old.first()
-            counterRepository.deleteById(old.counterId!!)
-            return old.toDTO()
-        }
+
+            var old =counterRepository.findByNumber(number)
+            if(old.isEmpty())
+                throw Exception("error no member in the db")
+            var element=old.first()
+            counterRepository.deleteById(element.counterId!!)
+
+
+
+
+
+
+
 
     }
 }

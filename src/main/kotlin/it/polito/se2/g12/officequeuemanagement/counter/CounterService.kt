@@ -8,5 +8,5 @@ interface CounterService {
     fun getCounterInfo(number: Int):CounterDTO
     fun changeCounterServices(number: Int,tagNameList: List<String>):CounterDTO
     fun getAllCounter():List<CounterDTO>
-    fun deleteCounter(number: Int):CounterDTO
+    fun deleteCounter(number: Int)
 }

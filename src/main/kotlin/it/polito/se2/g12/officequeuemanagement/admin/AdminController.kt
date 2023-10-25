@@ -35,8 +35,9 @@ class AdminController(private val counterService:CounterService,private val serv
         return counterService.changeCounterServices(obj.number,obj.tagNameList)
     }
     @DeleteMapping("/API/admin/counter/delete/{number}")
-    fun deleteCounter(@PathVariable number: Int): CounterDTO {
-        return counterService.deleteCounter(number)
+    @ResponseStatus(HttpStatus.OK)
+    fun deleteCounter(@PathVariable number: Int) {
+        counterService.deleteCounter(number)
     }
 
     // Service to do list (globally usable services)
