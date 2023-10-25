@@ -11,10 +11,9 @@ class TicketController(
         private val ticketService: TicketService
 ) {
     @PostMapping("/API/ticket/create/")
-    @ResponseStatus(HttpStatus.CREATED)
-    fun createTicket(@RequestParam serviceType: String): ResponseEntity<TicketDTO> {
-        val createdTicket = ticketService.createTicket(serviceType)
-        return ResponseEntity.ok(createdTicket)
+    @ResponseStatus(HttpStatus.OK)
+    fun createTicket(@RequestBody obj: AddNewTicketDTO): TicketDTO {
+        return ticketService.createTicket(obj.serviceType)
     }
 
     @GetMapping("/API/ticket/{ticketId}")
@@ -29,16 +28,17 @@ class TicketController(
 
     @PostMapping("/API/ticket/assign/{ticketId}")
     fun assignCounter(
-            @PathVariable ticketId: UUID,
-            @RequestParam counterId: UUID
+        @PathVariable ticketId: UUID,
+        @RequestBody obj: AssignCounterDTO
     ): ResponseEntity<TicketDTO> {
-        val assignedTicket = ticketService.assignCounter(ticketId, counterId)
+        val assignedTicket = ticketService.assignCounter(ticketId, obj.counterId)
         return if (assignedTicket != null) {
             ResponseEntity.ok(assignedTicket)
         } else {
             ResponseEntity.notFound().build()
         }
     }
+
 
     @PostMapping("/API/ticket/serve/{ticketId}")
     fun setServed(@PathVariable ticketId: UUID): ResponseEntity<TicketDTO> {
