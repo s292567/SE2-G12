@@ -31,7 +31,7 @@ class TicketController(
         @PathVariable ticketId: UUID,
         @RequestBody obj: AssignCounterDTO
     ): ResponseEntity<TicketDTO> {
-        val assignedTicket = ticketService.assignCounter(ticketId, obj.counterId)
+        val assignedTicket = ticketService.assignCounter(ticketId, obj.number)
         return if (assignedTicket != null) {
             ResponseEntity.ok(assignedTicket)
         } else {
