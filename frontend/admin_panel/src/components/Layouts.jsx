@@ -9,6 +9,8 @@ import {
 } from "react-bootstrap";
 import { Link, Outlet } from "react-router-dom";
 import "../style.css";
+import { getCounterServiceList, getCounterInfo, getAllCounter, addNewCounter, changeCounterServices, deleteCounter } from "../services/CounterAPI";
+import { getAllServices, addNewService, changeService, deleteService, getCounterList } from "../services/ServiceTypeAPI";
 
 function DefaultLayout(props) {
   const [isClicked1, setIsClicked1] = useState(true);
@@ -81,6 +83,27 @@ function MainLayout() {
   const [services, setServices] = useState([]);
   const [loading, setLoading] = useState(false);
 
+  /**
+   All tested counter API endpoints: 
+
+    getCounterServiceList(1); => Works
+    getCounterInfo(1); => Works
+    getAllCounter(); => Works
+    addNewCounter(2, ["1"], "The counter is located at the main entrance of the building"); => Works
+    changeCounterServices(2, []); 
+    deleteCounter(2);
+
+  
+  All tested service API endpoints: 
+
+    getAllServices(); => Works
+    addNewService("Get a new passport", 30, "Create a new passport for the client"); => Works
+    changeService("Get a new passport", "Get a new ID card", 30, "Create a new ID card for client"); => Works
+    deleteService("Get a new ID card"); => Works
+    getCounterList("Get a new ID card"); => Works
+   */
+
+    
   /**
   TO DO:
   from the API retrieve the counters list and set it to the counters state

@@ -1,0 +1,14 @@
+{
+    "baseAdminRoute": "http://localhost:8080/API/admin/", 
+    "getCounterServiceList": "counter/",
+    "getCounterInfo": "counter/info/",
+    "getAllCounter": "counter/info/",
+    "addNewCounter": "counter/add/",
+    "changeCounterServices": "counter/changeServiceList/",
+    "deleteCounter": "counter/delete/",
+    "getAllServices": "service/info/",
+    "addNewService": "service/add/",
+    "changeService": "service/change/",
+    "deleteService": "service/delete/",
+    "getCounterList": "service/getCounterList/"
+}
