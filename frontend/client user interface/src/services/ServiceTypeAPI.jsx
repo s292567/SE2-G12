@@ -6,7 +6,6 @@ const getServices = async () =>{
     const response = await fetch(url);
     if (response.ok){
         const json=await response.json();
-        console.log(JSON.stringify(json))
         return json.map(s => {
             return {id: s.serviceId, name: s.tagName}
         });
