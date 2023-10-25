@@ -15,7 +15,7 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
         if(serviceRepository.findByServiceName(tagName).isEmpty())
         return serviceRepository.save(Service(tagName,serviceTime,description)).toDTO()
         else
-            throw Exception("Tag-name already present")
+            throw ServiceNameAlreadyUsed("Tag-name $tagName already used")
     }
 
     override fun getAllService(): List<ServiceDTO> {
@@ -30,7 +30,7 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
     ): ServiceDTO {
         var old=serviceRepository.findByServiceName(tagName).first()
         if (serviceRepository.findByServiceName(newName).isNotEmpty())
-            throw Exception("new Name not available")
+            throw ServiceNameAlreadyUsed("Tag-name $newName already used")
         old.description=newDescription
         old.serviceTime=newServiceTime
         old.tagName=newName
@@ -38,14 +38,20 @@ class ServiceServiceImpl(private val serviceRepository: ServiceRepository,privat
     }
 
     override fun removeService(tagName: String): ServiceDTO {
+        var counterList=getServiceCounterList(tagName)
+        if (counterList.isNotEmpty())
+            throw ServiceInUseException("CANT DELETE:the following Counter are still using the Service : $counterList")
         var old=serviceRepository.findByServiceName(tagName)
-        if( old.isEmpty()){throw Exception ("tagName not present in the db")}
+        if( old.isEmpty()){throw ServiceTagNameMissingException ("tagName $tagName already present in the db")}
         serviceRepository.deleteById(old.first().serviceId!!)
         return old.first().toDTO()
     }
 
     override fun getServiceCounterList(tagName: String): List<CounterDTO> {
-        var list=counterRepository.findAll().filter{ it.listOfServices!!.contains(serviceRepository.findByServiceName(tagName).first()) }
+        var name=serviceRepository.findByServiceName(tagName)
+        if (name.isEmpty())
+            throw ServiceTagNameMissingException("tagName $tagName is not present in the db")
+        var list=counterRepository.findAll().filter{ it.listOfServices!!.contains(name.first()) }
         return list.map{it.toDTO()}
     }
 

@@ -62,7 +62,6 @@ class AdminController(private val counterService:CounterService,private val serv
 
     @GetMapping("/API/admin/service/getCounterList/{tagName}")
     fun getCounterList(@PathVariable tagName: String): List<CounterDTO> {
-        //this is a prototype highly suggest NOT to use it
         return serviceService.getServiceCounterList(tagName);
 
     }
