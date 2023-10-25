@@ -2,9 +2,10 @@ package it.polito.se2.g12.officequeuemanagement.service
 
 
 import java.time.Duration
+import java.util.*
 
 data class ServiceDTO (
-    var serviceId:Long?,
+    var serviceId: UUID?,
     var tagName:String,
     var serviceTime: Duration?,
 )

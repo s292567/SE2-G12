@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository
 import java.util.*
 
 @Repository
-interface ServiceRepository : JpaRepository<Service, Long>{
+interface ServiceRepository : JpaRepository<Service, UUID>{
     @Query("select * from service where tag_name= :tag_name ", nativeQuery = true)
     fun findByServiceName(tag_name: String?): List<Service>
     //@Query("select * from counter_list_of_services where listOfServiceId=:serviceId", nativeQuery = true)

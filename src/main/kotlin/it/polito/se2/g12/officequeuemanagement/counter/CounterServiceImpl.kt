@@ -1,13 +1,11 @@
 package it.polito.se2.g12.officequeuemanagement.counter
 
 import it.polito.se2.g12.officequeuemanagement.service.*
-import it.polito.se2.g12.officequeuemanagement.ticket.ServiceNotFoundException
 
 
 @org.springframework.stereotype.Service
 class CounterServiceImpl(
     private val counterRepository: CounterRepository,
-    private val serviceService: ServiceService,
     private val serviceRepository: ServiceRepository
 ) : CounterService {
 
