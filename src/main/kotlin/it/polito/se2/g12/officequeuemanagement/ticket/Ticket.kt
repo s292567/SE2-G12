@@ -8,15 +8,14 @@ import java.util.*
 
 @Entity
 class Ticket(
-    @OneToOne
+    @ManyToOne
     var service:Service
 ) {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-
+    @GeneratedValue(generator = "uuid2")
     var TicketId: UUID?=null
     var served:Boolean=false
-    @OneToOne
+    @ManyToOne
     var counterAssigned:Counter?=null
 
 }

@@ -14,7 +14,6 @@ class TicketServiceImpl(
 
     override fun createTicket(serviceName: String): TicketDTO {
         // Retrieve the service by name from the serviceRepository
-
         val services = serviceRepository.findByServiceName(serviceName)
         if (services.isNotEmpty()) {
             val service = services.first()
@@ -35,7 +34,7 @@ class TicketServiceImpl(
 
     }
 
-    override fun getTicketInfo(ticketId: Long): TicketDTO {
+    override fun getTicketInfo(ticketId: UUID): TicketDTO {
         // Retrieve the ticket by ID from the repository
         val ticket = ticketRepository.findById(ticketId)
                 .orElseThrow { TicketNotFoundException("Ticket not found for ID: $ticketId") }
@@ -48,7 +47,7 @@ class TicketServiceImpl(
         )
     }
 
-    override fun assignCounter(ticketId: Long, counterId: UUID): TicketDTO {
+    override fun assignCounter(ticketId: UUID, counterId: UUID): TicketDTO {
         // Retrieve the ticket by ID from the repository
         val ticket = ticketRepository.findById(ticketId)
                 .orElseThrow { TicketNotFoundException("Ticket not found for ID: $ticketId") }
@@ -71,7 +70,7 @@ class TicketServiceImpl(
         )
     }
 
-    override fun setServed(ticketId: Long): TicketDTO {
+    override fun setServed(ticketId: UUID): TicketDTO {
         // Retrieve the ticket by ID from the repository
         val ticket = ticketRepository.findById(ticketId)
                 .orElseThrow { TicketNotFoundException("Ticket not found for ID: $ticketId") }

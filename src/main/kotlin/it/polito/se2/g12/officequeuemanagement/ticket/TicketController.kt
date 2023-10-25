@@ -10,10 +10,6 @@ import java.util.*
 class TicketController(
         private val ticketService: TicketService
 ) {
-    // Ticket to do list
-    // TODO: make entry point get ticket information
-    // TODO: make entry point post createTicket,assignCounter,setServed
-
     @PostMapping("/API/ticket/create")
     @ResponseStatus(HttpStatus.CREATED)
     fun createTicket(@RequestParam serviceType: String): ResponseEntity<TicketDTO> {
@@ -22,7 +18,7 @@ class TicketController(
     }
 
     @GetMapping("/API/ticket/{ticketId}")
-    fun getTicketInfo(@PathVariable ticketId: Long): ResponseEntity<TicketDTO> {
+    fun getTicketInfo(@PathVariable ticketId: UUID): ResponseEntity<TicketDTO> {
         val ticketInfo = ticketService.getTicketInfo(ticketId)
         return if (ticketInfo != null) {
             ResponseEntity.ok(ticketInfo)
@@ -33,7 +29,7 @@ class TicketController(
 
     @PostMapping("/API/ticket/assign/{ticketId}")
     fun assignCounter(
-            @PathVariable ticketId: Long,
+            @PathVariable ticketId: UUID,
             @RequestParam counterId: UUID
     ): ResponseEntity<TicketDTO> {
         val assignedTicket = ticketService.assignCounter(ticketId, counterId)
@@ -45,7 +41,7 @@ class TicketController(
     }
 
     @PostMapping("/API/ticket/serve/{ticketId}")
-    fun setServed(@PathVariable ticketId: Long): ResponseEntity<TicketDTO> {
+    fun setServed(@PathVariable ticketId: UUID): ResponseEntity<TicketDTO> {
         val servedTicket = ticketService.setServed(ticketId)
         return if (servedTicket != null) {
             ResponseEntity.ok(servedTicket)
