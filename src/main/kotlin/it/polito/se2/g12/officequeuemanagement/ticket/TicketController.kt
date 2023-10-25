@@ -10,7 +10,7 @@ import java.util.*
 class TicketController(
         private val ticketService: TicketService
 ) {
-    @PostMapping("/API/ticket/create")
+    @PostMapping("/API/ticket/create/")
     @ResponseStatus(HttpStatus.CREATED)
     fun createTicket(@RequestParam serviceType: String): ResponseEntity<TicketDTO> {
         val createdTicket = ticketService.createTicket(serviceType)
