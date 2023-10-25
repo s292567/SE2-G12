@@ -14,6 +14,7 @@ class TicketServiceImpl(
 
     override fun createTicket(serviceName: String): TicketDTO {
         // Retrieve the service by name from the serviceRepository
+
         val services = serviceRepository.findByServiceName(serviceName)
         if (services.isNotEmpty()) {
             val service = services.first()
@@ -31,6 +32,7 @@ class TicketServiceImpl(
         } else {
             throw ServiceNotFoundException("Service not found for name: $serviceName")
         }
+
     }
 
     override fun getTicketInfo(ticketId: Long): TicketDTO {
