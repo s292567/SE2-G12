@@ -9,4 +9,5 @@ interface ServiceService {
     fun changeService(tagName: String, newName:String, newServiceTime:Duration, newDescription:String):ServiceDTO
     fun removeService(tagName: String):ServiceDTO
     fun getServiceCounterList(tagName: String):List<CounterDTO>
+    fun getServiceCounters():List<CounterDTO>
 }

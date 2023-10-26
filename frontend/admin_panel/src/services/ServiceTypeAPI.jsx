@@ -9,7 +9,6 @@ export const getAllServices = () => {
         if (response.status == 200) {
             console.log(response.data); 
             return response.data; 
-
         } else {
             console.error('Request failed with status: ', response.status); 
         }
@@ -27,7 +26,7 @@ export const addNewService = (tagName, serviceTime, description) => {
         "serviceTime": Number(serviceTime),
         "description": String(description)
     }).then(response => {
-        if (response.status == 200 || response.status == 201) {
+        if (response.statusText === 200 || response.status === 201) {
             console.log(response.data); 
             return response.data; 
 
@@ -48,7 +47,7 @@ export const changeService = (currentTagName, tagName, serviceTime, description)
         "serviceTime": Number(serviceTime),
         "description": String(description)
     }).then(response => {
-        if (response.status == 200 || response.status == 201) {
+        if (response.status == 200 || response.status === 201) {
             console.log(response.data); 
             return response.data; 
 
@@ -65,7 +64,7 @@ export const changeService = (currentTagName, tagName, serviceTime, description)
  */
 export const deleteService = (tagName) => {
     return axiosInstance.delete(routes.deleteService + `${String(tagName)}`).then(response => {
-        if (response.status == 200) {
+        if (response.status === 200) {
             console.log(response.data); 
             return true; 
 

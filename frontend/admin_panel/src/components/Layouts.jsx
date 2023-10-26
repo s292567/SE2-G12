@@ -9,8 +9,8 @@ import {
 } from "react-bootstrap";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import "../style.css";
-import { getCounterServiceList, getCounterInfo, getAllCounter, addNewCounter, changeCounterServices, deleteCounter } from "../services/CounterAPI";
-import { getAllServices, addNewService, changeService, deleteService, getCounterList } from "../services/ServiceTypeAPI";
+import { getCounterServiceList, getCounterInfo, getAllCounter, deleteCounter } from "../services/CounterAPI";
+import { getAllServices, deleteService, getCounterList } from "../services/ServiceTypeAPI";
 
 function DefaultLayout() {
   const [isClicked1, setIsClicked1] = useState(true);
@@ -115,9 +115,11 @@ function MainLayout() {
   
   const handleDelete = async (id) => {
     setLoading(true);
-    await deleteService(id);
-    setLoading(false);
-    navigate("/");
+    await deleteService(id).then(()=>{
+      setServices(services.filter((service) => service.tagName !== id));
+      setLoading(false);
+      navigate("/");
+    });
   };
 
   return (
@@ -149,24 +151,26 @@ function MainLayout() {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
                 <th>Service Name</th>
                 <th>Counters</th>
               </tr>
             </thead>
             <tbody>
               {services.map((service) => (
-                <tr key={service.id}>
-                  <td>{service.id}</td>
-                  <td>{service.serviceName}</td>
-                  <td>{service.counters.join(", ")}</td>
+                <tr key={service.serviceId}>
+                  <td>{service.tagName}</td>
+                  {service.counters !== undefined ? (
+                    <td>{service.counters.map((counter)=> counter.number).join(", ")}</td>
+                  ) : (
+                    <td>{service.counters}</td>
+                  ) }
                   <td>
                     <Button
                       className="editButton"
                       onClick={() => {
-                        navigate(`/services/${service.id}/edit`, {
+                        navigate(`/services/${service.serviceId}/edit`, {
                           state: {
-                            name: service.serviceName,
+                            name: service.tagName,
                             description: service.description,
                           },
                         });
@@ -179,7 +183,7 @@ function MainLayout() {
                     <Button
                       className="deleteButton"
                       onClick={() => {
-                        handleDelete(service.name);
+                        handleDelete(service.tagName);
                       }}
                     >
                       Delete
@@ -203,7 +207,7 @@ function CountersOverview() {
 
   useEffect(() => {
     setLoading(true);
-    getAllCounter.then((list) => {
+    getAllCounter().then((list) => {
       setCounters(list);
       setLoading(false);
     });
@@ -211,9 +215,11 @@ function CountersOverview() {
 
   const handleDelete = async (id) => {
     setLoading(true);
-    await deleteCounter(id);
-    setLoading(false);
-    navigate("/counters");
+    await deleteCounter(id).then(()=>{  
+      setCounters(counters.filter((counter) => counter.number !== id));
+      setLoading(false);
+      navigate("/counters");
+    });
   };
 
   return (
@@ -245,25 +251,28 @@ function CountersOverview() {
           <table>
             <thead>
               <tr>
-                <th>ID</th>
-                <th>Counter Name</th>
+                <th>Counter Number</th>
                 <th>Services</th>
               </tr>
             </thead>
             <tbody>
               {counters.map((counter) => (
-                <tr key={counter.id}>
-                  <td>{counter.id}</td>
-                  <td>{counter.counterName}</td>
-                  <td>{counter.services.join(", ")}</td>
+                <tr key={counter.number}>
+                  <td>{counter.number}</td>
+                  {counter.listOfServices !== undefined ? (
+                    <td>{counter.listOfServices.map(service => service.tagName).join(", ")}</td>
+                  ) : (
+                    <td>"[]"</td>
+                  ) }
                   <td>
                   <Button
                       className="editButton"
                       onClick={() => {
-                        navigate(`/counters/${counter.id}/edit`, {
+                        navigate(`/counters/${counter.number}/edit`, {
                           state: {
-                            name: counter.counterName,
+                            number: counter.number,
                             description: counter.description,
+                            listOfServices: counter.listOfServices,
                           },
                         });
                       }}
@@ -275,7 +284,7 @@ function CountersOverview() {
                     <Button
                       className="deleteButton"
                       onClick={() => {
-                        handleDelete(counter.id);
+                        handleDelete(counter.number);
                       }}
                     >
                       Delete

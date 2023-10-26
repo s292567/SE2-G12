@@ -1,28 +1,49 @@
 import { useEffect, useState, useContext } from "react";
-import { Form, Button, Container, FormLabel } from "react-bootstrap";
+import { Form, Button, Container, FormLabel, Spinner } from "react-bootstrap";
 import { useNavigate, useLocation } from "react-router-dom";
+
+import { addNewCounter, changeCounterServices, getAllCounter, } from "../services/CounterAPI";
+import { getAllServices, } from "../services/ServiceTypeAPI";
 
 import "../style.css";
 
 function CounterTypeForm() {
+  
+  // addNewCounter(2, ["1"], "The counter is located at the main entrance of the building"); => Works
+  // changeCounterServices(2, []); 
+
   const navigate = useNavigate();
   const location = useLocation();
 
-  let serviceType = undefined;
+  let counterType = undefined;
   if (location.state) {
-    serviceType = { ...location.state };
+    counterType = { ...location.state };
   }
 
-  const services_type = ["Service A", "Service B", "Service C", "Service D"]; // La tua lista di stringhe
-  const [selectedServices, setSelectedServices] = useState([]);
+  const [waiting, setWaiting] = useState(false);
 
-  const [name, setName] = useState(serviceType ? serviceType.name : " ");
+  const [services_type, setServices_type] = useState([]);
+  
+  const [number, setNumber] = useState([]) ;
+
+  useEffect(() => {
+    getAllServices().then((list) => {
+      setServices_type(list.map((service) => service.tagName));
+    });
+    getAllCounter().then((list) => {
+      setNumber(list.length + 1);
+    });
+  }, []);
+  
+  const [selectedServices, setSelectedServices] = useState(counterType ? counterType.listOfServices.map((service) => service.tagName) : []);
+
+  
   const [description, setDescription] = useState(
-    serviceType ? serviceType.description : " "
+    counterType ? counterType.description : " "
   );
 
   const buttonStyle = {
-    backgroundColor: serviceType ? "lightblue" : "#8FEB98",
+    backgroundColor: counterType ? "lightblue" : "#8FEB98",
     color: "black",
     borderRadius: "1rem",
     borderColor: "transparent",
@@ -40,24 +61,45 @@ function CounterTypeForm() {
     }
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    setWaiting(true);
+    if (counterType) {
+        await changeCounterServices(counterType.number, selectedServices).then(() => {
+          setWaiting(false);
+          navigate("/counters");
+        });
+      
+    } else {
+      await addNewCounter(number, selectedServices, description).then(async () => {
+        await changeCounterServices(number, selectedServices).then(() => {
+          setWaiting(false);
+          navigate("/counters");
+        });
+      });
+    }
+  };
+
   //TO DO: add the API call to create/update the counter (with all the considerations about the time needed to do it)
   
   return (
     <>
       <Container>
-        <h2 className="mb-5 mt-4">Counter </h2>
-        <Form>
-          <Form.Group controlId="name" className="mb-3">
-            <Form.Label>Counter Name: </Form.Label>
-            <Form.Control
-              as="textarea"
-              placeholder="Enter name"
-              style={{ height: "25px", width: "40%", borderColor: "black" }}
-              value={name}
-              onChange={(e) => setName(e.target.value)}
+        {waiting ? (
+          <div className="d-flex justify-content-center align-items-center">
+            <Spinner
+              as="span"
+              animation="border"
+              role="status"
+              className="me-2"
             />
-          </Form.Group>
-
+            <b>Loading...</b>
+          </div>
+        ) : (
+          <>
+        <h2 className="mb-5 mt-4">Counter </h2>
+        <Form onSubmit={handleSubmit}>
+            { counterType ? <> <h2>Counter Number:</h2><h5 className="mb-4">{counterType.number}</h5></> : <></>}
           <Form.Group controlId="description" className="mb-4">
             <Form.Label>Description: </Form.Label>
             <Form.Control
@@ -87,13 +129,15 @@ function CounterTypeForm() {
 
           <Button
             style={buttonStyle}
-            onClick={() => {
-              navigate("/counters");
+            onClick={(event) => {
+              handleSubmit(event);
             }}
           >
-            {serviceType ? "Update" : "Create"}
+            {counterType ? "Update" : "Create"}
           </Button>
         </Form>
+      </>
+        )}
       </Container>
     </>
   );
