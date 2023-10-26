@@ -105,61 +105,18 @@ function MainLayout() {
     getCounterList("Get a new ID card"); => Works
    */
 
-    
-  /**
-  TO DO:
-  from the API retrieve the counters list and set it to the counters state
   useEffect(() => {
     setLoading(true);
-    getContents().then((list) => {
-      setCounters(list);
+    getAllServices().then((list) => {
+      setServices(list);
       setLoading(false);
     });
-  }, [counters.length]);
-  */
-
-  // delete when the API will be ready
-  useEffect(() => {
-    setServices([
-      {
-        id: 1,
-        serviceName: "Servizio A",
-        counters: [1, 3, 5],
-        description: "Servizio A",
-      },
-      {
-        id: 2,
-        serviceName: "Servizio B",
-        counters: [2, 4],
-        description: "Servizio B",
-      },
-      {
-        id: 3,
-        serviceName: "Servizio C",
-        counters: [1, 5],
-        description: "Servizio C",
-      },
-      {
-        id: 4,
-        serviceName: "Servizio D",
-        counters: [3],
-        description: "Servizio D",
-      },
-      {
-        id: 5,
-        serviceName: "Servizio E",
-        counters: [1, 2, 4],
-        description: "Servizio E",
-      },
-    ]);
-  }, []);
-
+  }, [services.length]);
+  
   const handleDelete = async (id) => {
-    /*
     setLoading(true);
     await deleteService(id);
     setLoading(false);
-    */
     navigate("/");
   };
 
@@ -222,7 +179,7 @@ function MainLayout() {
                     <Button
                       className="deleteButton"
                       onClick={() => {
-                        handleDelete(service.id);
+                        handleDelete(service.name);
                       }}
                     >
                       Delete
@@ -244,35 +201,18 @@ function CountersOverview() {
   const [counters, setCounters] = useState([]);
   const [loading, setLoading] = useState(false);
 
-  /**
-  TO DO:
-  from the API retrieve the counters list and set it to the counters state
   useEffect(() => {
     setLoading(true);
-    getContents().then((list) => {
+    getAllCounter.then((list) => {
       setCounters(list);
       setLoading(false);
     });
   }, [counters.length]);
-  */
-
-  // delete when the API will be ready
-  useEffect(() => {
-    setCounters([
-      { id: 1, counterName: "Counter A", services: [1, 3, 5] },
-      { id: 2, counterName: "Counter B", services: [2, 4] },
-      { id: 3, counterName: "Counter C", services: [1, 5] },
-      { id: 4, counterName: "Counter D", services: [3] },
-      { id: 5, counterName: "Counter E", services: [1, 2, 4] },
-    ]);
-  }, []);
 
   const handleDelete = async (id) => {
-    /*
     setLoading(true);
     await deleteCounter(id);
     setLoading(false);
-    */
     navigate("/counters");
   };
 
