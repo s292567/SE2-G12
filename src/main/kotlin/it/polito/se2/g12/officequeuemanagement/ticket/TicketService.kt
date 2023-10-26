@@ -4,8 +4,8 @@ import java.util.*
 
 interface TicketService {
     fun createTicket(serviceName:String):TicketDTO
-    fun getTicketInfo(ticketId:Long):TicketDTO
+    fun getTicketInfo(ticketId:UUID):TicketDTO
 
-    fun assignCounter(ticketId: Long, counterId: UUID):TicketDTO
-    fun setServed(ticketId: Long):TicketDTO
+    fun assignCounter(ticketId: UUID, number: Int):TicketDTO
+    fun setServed(ticketId: UUID):TicketDTO
 }

@@ -1,0 +1,13 @@
+
+{
+  "services": [
+    { "id": 1, "name": "Service A" },
+    { "id": 2, "name": "Service B" },
+    { "id": 3, "name": "Service C" }
+  ],
+  "counters": {
+    "1": { "counter": 1 },
+    "2": { "counter": 2 },
+    "3": { "counter": 3 }
+  }
+}
