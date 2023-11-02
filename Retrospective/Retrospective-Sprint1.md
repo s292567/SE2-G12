@@ -32,10 +32,14 @@ sections:
 
 | Story  | # Tasks | Points | Hours est. | Hours actual |  TTE Error   | Average task | Std Estimated |  Std Actual |
 |--------|---------|--------|------------|--------------|--------------|--------------|---------------|-------------|
-| _#1_   |    4    |    5   |   12h30m   |   12h15m     |     0.02     |       3      |      0.89     |     1.6     |
+| _#1_   |    4    |    5   |   12h30m   |   17h45m     |    -0.30     |     4.5h     |      0.89     |     2.87    |
 | _#2_   |    5    |    8   |   14h30m   |   19h50m     |    -0.26     |       4      |      2.2      |     2.8     |
 
 > place technical tasks corresponding to story `#0` and leave out story points (not applicable in this case)
+#1 Story is Client Service Type 
+#2 Story is Admin Setup
+Other then the two stories a Sprint planning of 5 hours was necessary
+![Alt text](./TimeReport-Sprint1.jpg?raw=true "Time Report")
 
 - Hours per task average, standard deviation (estimate and actual)
 - Total task estimation error ratio: sum of total hours estimation / sum of total hours spent - 1
