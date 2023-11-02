@@ -59,18 +59,23 @@ sections:
 
 ## ASSESSMENT
 
-- What caused your errors in estimation (if any)?  The main problem was the lack of global view of the project and the not complete parallelization of the project
+**What caused your errors in estimation (if any)?**
+  - The main problem was the lack of global view on the project and that we didn't parallelize the workflows 
+  - Too optimistic attitude => We need to take into account time for possible errors and bugs
+  - We planned the sprint hours (48hrs) first and then tried to fit the task estimations according to the 48hrs, which lead to biased estimates
 
-- What lessons did you learn (both positive and negative) in this sprint? We learnt that sprint planning is the most important part of the sprint
+**What lessons did you learn (both positive and negative) in this sprint?**
+  - We learnt that sprint planning is the most important part of the sprint
+  - We can achieve a lot when we work together as a team
 
-- Which improvement goals set in the previous retrospective were you able to achieve? ---
+**Which improvement goals set in the previous retrospective were you able to achieve?**
   
-- Which ones you were not able to achieve? Why? --
+**Which ones you were not able to achieve? Why?**
 
-- Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)
+**Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)**
+  - Estimation => Plan hours for each task and then look how man we can fit into the sprint 
+  - To split the work in multiple parallel flows so that we can start to work at the same time 
+  - To have a better holistic view of the project so that everyone can understand every part of it like frontend and backend
 
-  > To split the work in multiple parallel flow so that we can start to work at the same time
-  > To have a better general view of the project so that everyone can understand every part of it beeing frontend or backend.
-
-- One thing you are proud of as a Team!!
-  >That we managed, even if we organized badly, to produce a working lightweight demo to present
+**One thing you are proud of as a Team!**
+  - That we managed, even if we organized badly, to develop a working lightweight demo to present
