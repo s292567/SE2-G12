@@ -13,7 +13,7 @@ sections:
 ### Macro statistics
 - 2 stories committed but only basic unit testing was implemented so 2 stories done?
 - The point we committed were 13 but since unit testing was missing and the frontend was a bit too simple maybe we were too optimistic
-- We planned 8 hour each for the project so a total of 48h and we committed (8h20m 8h30m 8h45m 8h30m 7h 3h)
+- We planned 8 hour each for the project so a total of 48h and we committed 44h
 
 - Number of stories committed vs. done 
 - Total points committed vs. done 
@@ -36,9 +36,9 @@ sections:
 | _#2_   |    5    |    8   |   14h30m   |   19h50m     |    -0.26     |       4      |      2.2      |     2.8     |
 
 place technical tasks corresponding to story `#0` and leave out story points (not applicable in this case)
-#1 Story is Client Service Type 
-#2 Story is Admin Setup
-Other then the two stories a Sprint planning of 5 hours was necessary
+- #1 Story: Client Service Type 
+- #2 Story: Admin Setup
+- An additional Sprint planning of 5 (cumulative) work hours was necessary
 
 ![Alt text](./TimeReport-Sprint1.jpg?raw=true "Time Report")
 
