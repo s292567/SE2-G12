@@ -1,4 +1,4 @@
-TEMPLATE FOR RETROSPECTIVE (Team ##)
+TEMPLATE FOR RETROSPECTIVE (Team 12)
 =====================================
 
 The retrospective should include _at least_ the following
@@ -11,8 +11,8 @@ sections:
 ## PROCESS MEASURES 
 
 ### Macro statistics
--2 stories committed and unit testing was not implemented so 2 stories done?
--The point we committed were 13 but since unit testing was missing and the frontend was a bit too simple maybe we were too optimistic
+- 2 stories committed but only basic unit testing was implemented so 2 stories done?
+- The point we committed were 13 but since unit testing was missing and the frontend was a bit too simple maybe we were too optimistic
 - We planned 8 hour each for the project so a total of 48h and we committed (8h20m 8h30m 8h45m 8h30m 7h 3h)
 
 - Number of stories committed vs. done 
@@ -44,17 +44,19 @@ sections:
 ## QUALITY MEASURES 
 
 - Unit Testing:
-  - Total hours estimated
-  - Total hours spent
-  - Nr of automated unit test cases 
-  - Coverage (if available)
+  - Total hours estimated: 4h
+  - Total hours spent: 3h 30m
+  - Nr of automated unit test cases: 15
+  - Coverage (if available): *--not calculated--*
+  > For a complete and exhaustive unit testing, more time is needed.
 - E2E testing:
   - Total hours estimated
   - Total hours spent
+  > Done with postman, calling the APIs and endpoints, but not estimated nor tracked.
 - Code review 
   - Total hours estimated 
   - Total hours spent
-  
+  > Done in preparation for the demo?
 
 
 ## ASSESSMENT
