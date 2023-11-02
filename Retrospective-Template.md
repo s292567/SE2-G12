@@ -30,10 +30,10 @@ sections:
 
 ### Detailed statistics
 
-| Story  | # Tasks | Points | Hours est. | Hours actual |  TTE Error   | Average task | Std Estimated | Std Actual |
-|--------|---------|--------|------------|--------------|--------------|--------------|---------------|------------|
-| _#1_   |    4    |    5   |   12h30m   |   12h15m     |     0.02     |       3      | Test          | Test       |
-| _#2_   |    5    |    8   |   14h30m   |   19h50m     |    -0.26     |       4      | Test          | Test       |
+| Story  | # Tasks | Points | Hours est. | Hours actual |  TTE Error   | Average task | Std Estimated |  Std Actual |
+|--------|---------|--------|------------|--------------|--------------|--------------|---------------|-------------|
+| _#1_   |    4    |    5   |   12h30m   |   12h15m     |     0.02     |       3      |      0.89     |     1.6     |
+| _#2_   |    5    |    8   |   14h30m   |   19h50m     |    -0.26     |       4      |      2.2      |     2.8     |
 
 > place technical tasks corresponding to story `#0` and leave out story points (not applicable in this case)
 
