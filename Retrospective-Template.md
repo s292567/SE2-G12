@@ -48,15 +48,14 @@ sections:
   - Total hours spent: 3h 30m
   - Nr of automated unit test cases: 15
   - Coverage (if available): *--not calculated--*
-  > For a complete and exhaustive unit testing, more time is needed.
 - E2E testing:
-  - Total hours estimated
-  - Total hours spent
-  > Done with postman, calling the APIs and endpoints, but not estimated nor tracked.
+  - Total hours estimated: --
+  - Total hours spent: --
+  > Done with Postman and Insomnia, calling the APIs and endpoints, but not estimated nor tracked.
 - Code review 
-  - Total hours estimated 
-  - Total hours spent
-  > Done in preparation for the demo?
+  - Total hours estimated: --
+  - Total hours spent: --
+> Done together in preparation for the demo.
 
 
 ## ASSESSMENT
@@ -75,7 +74,7 @@ sections:
 **Which ones you were not able to achieve? Why?**
 
 **Improvement goals for the next sprint and how to achieve them (technical tasks, team coordination, etc.)**
-  - Estimation => Plan hours for each task and then look how man we can fit into the sprint 
+  - Estimation => Plan hours for each task and then look how many we can fit into the sprint 
   - To split the work in multiple parallel flows so that we can start to work at the same time 
   - To have a better holistic view of the project so that everyone can understand every part of it like frontend and backend
 
