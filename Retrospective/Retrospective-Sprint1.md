@@ -11,9 +11,9 @@ sections:
 ## PROCESS MEASURES 
 
 ### Macro statistics
-- 2 stories committed but only basic unit testing was implemented so 2 stories done?
+- 2 stories committed but only basic unit testing was implemented so 2 stories done partially
 - The point we committed were 13 but since unit testing was missing and the frontend was a bit too simple maybe we were too optimistic
-- We planned 8 hour each for the project so a total of 48h and we committed 44h
+- We planned 8 hour each for the project so a total of 48h and we committed to 44h
 
 - Number of stories committed vs. done 
 - Total points committed vs. done 
